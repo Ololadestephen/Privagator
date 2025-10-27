@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privagator Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🔐 Privagator</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Encrypt</a></li>
+            <li><a href="#">Decrypt</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <header>
+            <h1>Welcome to Privagator</h1>
+            <p>Secure computations powered by Zama FHE</p>
+        </header>
+
+        <section class="content">
+            <div class="card">
+                <h3>Encryption Demo</h3>
+                <form action="/encrypt" method="POST">
+                    <input type="text" name="input_data" placeholder="Enter text to encrypt">
+                    <button type="submit">Encrypt</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

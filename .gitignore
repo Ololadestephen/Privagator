@@ -1,0 +1,23 @@
+# Ignore environments, cache, and heavy libraries
+venv/
+venv310/
+__pycache__/
+.env/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.bin
+*.pth
+*.whl
+*.zip
+*.tar.gz
+*.egg-info/
+*.log
+
+# OS and IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp

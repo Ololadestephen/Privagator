@@ -1,0 +1,2 @@
+macOS-26.0.1-arm64-arm-64bit Darwin Kernel Version 25.0.0: Wed Sep 17 21:41:23 PDT 2025; root:xnu-12377.1.9~141/RELEASE_ARM64_T8122
+Python 3.10.19
