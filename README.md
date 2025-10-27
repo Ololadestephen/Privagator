@@ -26,7 +26,7 @@ Perform private data analysis and machine learning inference **without revealing
 ## ⚙️ Setup & Installation
 
 Clone the repository:
-```bash
+
 git clone https://github.com/Ololadestephen/Privagator.git
 cd Privagator
 
@@ -58,7 +58,7 @@ Privagator/
     ├── models/
     └── data/
 
-🧠 Key Features
+ 🧠 Key Features
 
 ✅ Fully Homomorphic Encryption (FHE) with Zama
 ✅ Real-time encrypted computation via Streamlit
