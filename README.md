@@ -26,13 +26,13 @@ Perform private data analysis and machine learning inference **without revealing
 ## ⚙️ Setup & Installation
 
 # 1. Clone the repository
-```bash
+
 git clone https://github.com/Ololadestephen/Privagator.git
 cd  
 
 
 # 2️⃣ Create and activate your virtual environment:
- ```bash
+
 python3 -m venv venv310
 source venv310/bin/activate  # macOS/Linux
 venv310\Scripts\activate     # Windows
@@ -41,12 +41,12 @@ venv310\Scripts\activate     # Windows
 
 
 # Install dependencies:
-```bash
+
 pip install -r requirements.txt
 
 
 # Run the app:
-```bash
+
 streamlit run app.py
 
 
