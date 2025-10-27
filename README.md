@@ -25,28 +25,31 @@ Perform private data analysis and machine learning inference **without revealing
 
 ## ⚙️ Setup & Installation
 
-Clone the repository:
-
+### 1. Clone the repository
+```bash
 git clone https://github.com/Ololadestephen/Privagator.git
 cd Privagator
 
-Create and activate your virtual environment:
 
+## Create and activate your virtual environment
 python3 -m venv venv310
 source venv310/bin/activate  # macOS/Linux
 venv310\Scripts\activate     # Windows
 
 
-Install dependencies:
+
+
+# Install dependencies:
 
 pip install -r requirements.txt
 
 
-Run the app:
+# Run the app:
 
 streamlit run app.py
 
-📂 Project Structure
+# 📂 Project Structure
+
 Privagator/
 ├── app.py                 # Streamlit main app
 ├── requirements.txt       # Dependencies
@@ -79,7 +82,7 @@ Feel free to fork, modify, and build upon it.
 
 
 👤 Author
-- [Ololade Stephen] (https://x.com/Ololadestephen)
+- [Ololade Stephen](https://x.com/Ololadestephen)
 
 
 ✨ Built for the ZamaFHE Builder Track — Empowering Privacy with Mathematics.
