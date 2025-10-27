@@ -7,7 +7,7 @@ It allows users to perform computations on encrypted data — keeping sensitive 
 
 ## 🚀 Project Overview
 
-This project was developed as part of the **Zama FHE Builder Track**, focusing on leveraging Zama’s `Concrete` and `TFHE` libraries to explore privacy-first computation.
+This project was developed as part of the **Zama FHE Builder Track**, leveraging Zama’s `Concrete` and `TFHE` libraries to explore privacy-first computation.
 
 ### 🔐 Core Idea
 Perform private data analysis and machine learning inference **without revealing the underlying data**.
@@ -15,41 +15,37 @@ Perform private data analysis and machine learning inference **without revealing
 ---
 
 ## 🧩 Tech Stack
-- **Python 3.10+**
-- **Zama Concrete Library**
-- **Streamlit** — interactive frontend
-- **PyTorch** — optional ML integration
-- **Git + Virtualenv**
+- 🐍 **Python 3.10+**
+- 🧮 **Zama Concrete Library**
+- 🌐 **Streamlit** — interactive frontend
+- 🔥 **PyTorch** — optional ML integration
+- ⚙️ **Git + Virtualenv**
 
 ---
 
 ## ⚙️ Setup & Installation
 
-### 1. Clone the repository
+### 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/Ololadestephen/Privagator.git
 cd Privagator
-
-
-# Create and activate your virtual environment
+2️⃣ Create and activate your virtual environment
+bash
+Copy code
 python3 -m venv venv310
 source venv310/bin/activate  # macOS/Linux
 venv310\Scripts\activate     # Windows
-
-
-
-
-# Install dependencies:
-
+3️⃣ Install dependencies
+bash
+Copy code
 pip install -r requirements.txt
-
-
-# Run the app:
-
+4️⃣ Run the app
+bash
+Copy code
 streamlit run app.py
-
-# 📂 Project Structure
-
+📂 Project Structure
+bash
+Copy code
 Privagator/
 ├── app.py                 # Streamlit main app
 ├── requirements.txt       # Dependencies
@@ -60,18 +56,16 @@ Privagator/
     ├── fhe_utils.py
     ├── models/
     └── data/
-
-# 🧠 Key Features
-
+🌟 Key Features
 ✅ Fully Homomorphic Encryption (FHE) with Zama
-✅ Real-time encrypted computation via Streamlit
-✅ Modular architecture for FHE experiments
-✅ Lightweight, privacy-first design
+⚡ Real-time encrypted computation via Streamlit
+🧱 Modular architecture for FHE experiments
+🔒 Lightweight, privacy-first design
 
-# 🧾 License
-
+📜 License
 This project is licensed under the MIT License.
 Feel free to fork, modify, and build upon it.
+
 
 # 💬 Learn More
 - 🔗 [Zama Official Docs](https://docs.zama.ai)
