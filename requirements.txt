@@ -2,3 +2,6 @@ flask
 flask-cors
 requests
 gunicorn
+numpy
+concrete-python==2.11.0
+streamlit
