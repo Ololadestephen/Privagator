@@ -1,7 +1,7 @@
-flask
-flask-cors
-requests
-gunicorn
-numpy
+flask==3.0.3
+flask-cors==4.0.0
+requests==2.31.0
+gunicorn==21.2.0
+numpy==1.26.4
 concrete-python==2.11.0
-streamlit
+streamlit==1.37.1
