@@ -9,7 +9,7 @@ Then run Streamlit UI:
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import traceback
+import traceback  import os
 
 # Import centralized FHE logic (real Concrete if available, otherwise simulated)
 from modules.fhe_core import run_circuit, is_concrete_available
@@ -65,4 +65,8 @@ def compute():
 
 if __name__ == "__main__":
     print("🚀 Starting FHE server on http://127.0.0.1:8765")
-    app.run(host="127.0.0.1", port=8765, debug=False)
+
+
+port = int(os.environ.get("PORT", 8765))
+app.run(host="0.0.0.0", port=port)
+
