@@ -1,8 +1,9 @@
-# modules/fhe_core.py
-
-
-import traceback
-import math
+try:
+    from concrete import fhe
+    FHE_AVAILABLE = True
+except ImportError:
+    FHE_AVAILABLE = False
+    print("⚠️  concrete-python not available — using simulated FHE mode")
 
 # Flags / placeholders
 USING_CONCRETE = False
@@ -135,3 +136,13 @@ def is_concrete_available():
         if _compile_error:
             msg += " Details:\n" + _compile_error.splitlines()[-4:][0] if _compile_error else ""
         return False, msg
+
+def encrypt(x):
+    if not FHE_AVAILABLE:
+        return x * 2  # fake encryption
+    return x  # replace with real encryption when available
+
+def decrypt(y):
+    if not FHE_AVAILABLE:
+        return y / 2  # fake decryption
+    return y
