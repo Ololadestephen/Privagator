@@ -2,22 +2,50 @@ import streamlit as st
 import requests
 import time
 
+# ------------------------------
+# PAGE SETUP
+# ------------------------------
 st.set_page_config(page_title="Privagator | FHE Demo", layout="centered")
 
 from theme_loader import load_theme
 load_theme()
 
+# ------------------------------
+# HEADER & THEME
+# ------------------------------
+st.markdown("<style>img {margin-bottom: 0.5rem;}</style>", unsafe_allow_html=True)
 st.image("https://cdn-icons-png.flaticon.com/512/3064/3064197.png", width=100)
 st.title("🔐 Privagator — FHE Demo (client UI)")
 st.markdown("Interact with the encrypted computation engine below 👇")
 
+# ------------------------------
+# SERVER CONFIG
+# ------------------------------
 SERVER_URL = "http://127.0.0.1:8765/compute"
 
-# Get selected feature from query params (default: multiply)
-params = st.query_params
-default_feature = params.get("feature", "multiply")
+def check_server_health():
+    """Check if the FHE backend server is reachable."""
+    try:
+        res = requests.get(SERVER_URL.replace("/compute", "/health"), timeout=5)
+        if res.status_code == 200:
+            return True
+    except Exception:
+        return False
+    return False
 
-# Map features to readable names
+if not check_server_health():
+    st.error("❌ FHE backend not reachable. Please run `python fhe_server.py` first.")
+    st.stop()
+
+# ------------------------------
+# QUERY PARAMS
+# ------------------------------
+params = st.query_params if hasattr(st, "query_params") else st.experimental_get_query_params()
+default_feature = params.get("feature", ["multiply"])[0] if isinstance(params.get("feature"), list) else params.get("feature", "multiply")
+
+# ------------------------------
+# DEMO OPTIONS
+# ------------------------------
 feature_map = {
     "multiply": "Secure Multiplication",
     "square": "Square Function",
@@ -35,6 +63,9 @@ demo = st.selectbox(
     index=feature_keys.index(default_feature) if default_feature in feature_keys else 0
 )
 
+# ------------------------------
+# SERVER COMMUNICATION
+# ------------------------------
 def call_server(op, inputs):
     try:
         r = requests.post(SERVER_URL, json={"op": op, "inputs": inputs}, timeout=15)
@@ -46,9 +77,9 @@ def call_server(op, inputs):
         st.error(f"Connection failed: {e}")
     return None
 
-# -------------------------------------
-# 1️⃣ Secure Multiplication
-# -------------------------------------
+# ------------------------------
+# DEMO: Secure Multiplication
+# ------------------------------
 if demo == "Secure Multiplication":
     st.subheader("Multiply two numbers securely 🔢")
     a = st.number_input("Number A", 0, 100, 3)
@@ -60,9 +91,9 @@ if demo == "Secure Multiplication":
         if result is not None:
             st.success(f"Encrypted computation result: {a} × {b} = {result}")
 
-# -------------------------------------
-# 2️⃣ Square Function
-# -------------------------------------
+# ------------------------------
+# DEMO: Square Function
+# ------------------------------
 elif demo == "Square Function":
     st.subheader("Compute a number's square securely 🧮")
     x = st.number_input("Enter a number", 0, 100, 6)
@@ -73,9 +104,9 @@ elif demo == "Square Function":
         if result is not None:
             st.success(f"Encrypted computation result: {x}² = {result}")
 
-# -------------------------------------
-# 3️⃣ Encrypted Addition
-# -------------------------------------
+# ------------------------------
+# DEMO: Encrypted Addition
+# ------------------------------
 elif demo == "Encrypted Addition":
     st.subheader("Add two encrypted numbers ➕")
     x = st.number_input("Value X", 0, 100, 3)
@@ -87,9 +118,9 @@ elif demo == "Encrypted Addition":
         if result is not None:
             st.success(f"Encrypted result: {x} + {y} = {result}")
 
-# -------------------------------------
-# 4️⃣ Private Comparison
-# -------------------------------------
+# ------------------------------
+# DEMO: Private Comparison
+# ------------------------------
 elif demo == "Private Comparison":
     st.subheader("Compare values privately ⚖️")
     x = st.number_input("Value A", 0, 100, 10)
@@ -102,9 +133,9 @@ elif demo == "Private Comparison":
             msg = "✅ A is greater than B" if result else "❌ A is not greater than B"
             st.success(msg)
 
-# -------------------------------------
-# 5️⃣ Aggregate Balances
-# -------------------------------------
+# ------------------------------
+# DEMO: Aggregate Balances
+# ------------------------------
 elif demo == "Aggregate Balances":
     st.subheader("Aggregate Wallet Balances 💰")
     st.caption("Compute total and average balances securely — without revealing individual amounts.")
@@ -134,6 +165,9 @@ elif demo == "Aggregate Balances":
         """)
         st.image("https://cdn-icons-png.flaticon.com/512/11496/11496031.png", width=400)
 
+# ------------------------------
+# FOOTER
+# ------------------------------
 st.markdown("---")
 st.caption("Built with ❤️ using Streamlit & Zama's Concrete FHE library")
 st.caption("© 2025 Privagator Project")
