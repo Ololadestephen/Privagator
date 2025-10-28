@@ -1,9 +1,15 @@
+import numpy as np
+import traceback
+
+
 try:
     from concrete import fhe
     FHE_AVAILABLE = True
 except ImportError:
     FHE_AVAILABLE = False
     print("⚠️  concrete-python not available — using simulated FHE mode")
+  
+
 
 # Flags / placeholders
 USING_CONCRETE = False
