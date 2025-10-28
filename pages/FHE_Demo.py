@@ -2,9 +2,43 @@ import streamlit as st
 import requests
 import time
 
-# ------------------------------
+import subprocess
+import requests
+import time
+import streamlit as st
+import os
+
+# Set up the page
+st.set_page_config(page_title="Privagator | FHE Demo", layout="centered")
+
+# Automatically start fhe_server.py if not running
+SERVER_URL = "http://127.0.0.1:8765/compute"
+
+def start_fhe_server():
+    """Start fhe_server.py if it's not already running."""
+    try:
+        requests.get(SERVER_URL, timeout=2)
+        st.info("✅ FHE backend already running.")
+        return
+    except Exception:
+        st.warning("Starting local FHE server...")
+
+    # Run the FHE server in the background
+    subprocess.Popen(
+        ["python", "fhe_server.py"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
+    time.sleep(2)
+    st.success("🚀 FHE backend started successfully!")
+
+# Run the check/start logic
+start_fhe_server()
+
+
+
 # PAGE SETUP
-# ------------------------------
+
 st.set_page_config(page_title="Privagator | FHE Demo", layout="centered")
 
 from theme_loader import load_theme
