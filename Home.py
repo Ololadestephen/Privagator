@@ -6,9 +6,8 @@ st.set_page_config(page_title="Privagator | FHE Demo", layout="centered")
 from theme_loader import load_theme
 load_theme()
 
-# -------------------------
 # Header section
-# -------------------------
+
 st.image("https://cdn-icons-png.flaticon.com/512/3064/3064197.png", width=100)
 st.title("🔐 Welcome to Privagator")
 st.subheader("Your interactive Fully Homomorphic Encryption (FHE) demo lab")
@@ -20,9 +19,9 @@ st.markdown("""
 
 st.markdown("---")
 
-# -------------------------
-# Features section (4 only)
-# -------------------------
+
+# Features section 
+
 st.header("✨ Explore the Demos")
 
 col1, col2, col3, col4 = st.columns(4)
@@ -66,9 +65,8 @@ with col4:
 
 st.markdown("---")
 
-# -------------------------
 # How it works
-# -------------------------
+
 st.header("🧠 How It Works")
 
 st.markdown("""
@@ -82,3 +80,4 @@ st.info("🔒 With FHE, privacy isn’t an option, it’s built into the math.")
 st.markdown("---")
 st.caption("Built with ❤️ using Streamlit & Zama's Concrete FHE library")
 st.caption("© 2025 Privagator Project")
+

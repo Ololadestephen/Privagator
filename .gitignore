@@ -1,23 +1,70 @@
-# Ignore environments, cache, and heavy libraries
-venv/
-venv310/
+# --- Python ---
 __pycache__/
-.env/
-*.pyc
+*.py[cod]
+*.egg
+*.egg-info/
 *.pyo
 *.pyd
 *.so
 *.dylib
-*.bin
-*.pth
-*.whl
-*.zip
-*.tar.gz
-*.egg-info/
-*.log
+*.dll
 
-# OS and IDE
-.DS_Store
-.idea/
+# --- Virtual Environments ---
+venv*/
+.env/
+.envrc
+*.env
+*.venv
+
+# --- Build / Distribution ---
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# --- IDE / Editor ---
 .vscode/
+.idea/
 *.swp
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# --- Logs / Cache ---
+*.log
+*.out
+*.pid
+.cache/
+pytest_cache/
+__pycache__/
+.coverage
+.tox/
+.mypy_cache/
+
+# --- Jupyter / Notebook Checkpoints ---
+.ipynb_checkpoints/
+
+# --- System Files ---
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# --- Zama / Concrete / FHE Artifacts ---
+*.a
+*.o
+*.obj
+*.bin
+*.lib
+*.pb
+*.onnx
+*.mlir
+*.ll
+*.pt
+*.pth
+*.ckpt
+*.tflite
+*.pbtxt
+libConcretelang*
+libtorch_*
