@@ -74,9 +74,13 @@ ZamaFHE_Privagator/
 
 #  🧠 FHE Operations Implemented
 ✅ Secure Multiplication - a × b on encrypted values
+
 ✅ Encrypted Addition - x + y without decryption
+
 ✅ Square Function - x² computed privately
+
 ✅ Private Comparison - a > b without revealing values
+
 ✅ Aggregate Analytics - Sum and average of encrypted datasets
 
 #  🎓 Builder Track Highlights
