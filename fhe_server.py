@@ -9,7 +9,8 @@ Then run Streamlit UI:
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import traceback  import os
+import traceback 
+import os
 
 # Import centralized FHE logic (real Concrete if available, otherwise simulated)
 from modules.fhe_core import run_circuit, is_concrete_available
