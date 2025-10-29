@@ -41,7 +41,7 @@ cd ZamaFHE_Privagator
 ```
 
 
-# 2️⃣ Create and activate your virtual environment:
+### 2️⃣ Create and activate your virtual environment:
 ```bash
 python3 -m venv venv310
 source venv310/bin/activate  # macOS/Linux
@@ -50,17 +50,17 @@ venv310\Scripts\activate     # Windows
 
 
 
-# Install dependencies:
+### Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-# Run the app:
+### Run the app:
 ```bash
 streamlit run Home.py
 ```
 
-# 📂 Project Structure
+#### 📂 Project Structure
 ```bash
 ZamaFHE_Privagator/
 ├── fhe_demo.py              # Main Streamlit app (Live Demo)
