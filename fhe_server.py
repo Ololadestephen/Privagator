@@ -1,73 +1,135 @@
-# fhe_server.py
-"""
-FHE backend server — uses modules/fhe_core.run_circuit.
-Run locally (in your venv) with:
-    python fhe_server.py
-Then run Streamlit UI:
-    streamlit run fhe_demo.py
-"""
+import streamlit as st
+import numpy as np
+import time
 
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import traceback 
-import os
+# Remove the FHE server check and use simulated computations directly
+# --------------------------------
+# PAGE CONFIGURATION
+# --------------------------------
+st.set_page_config(
+    page_title="Privagator — FHE Demo",
+    layout="centered",
+    page_icon="🔐"
+)
 
-# Import centralized FHE logic (real Concrete if available, otherwise simulated)
-from modules.fhe_core import run_circuit, is_concrete_available
+# --------------------------------
+# HEADER SECTION
+# --------------------------------
+st.image("https://cdn-icons-png.flaticon.com/512/3064/3064197.png", width=100)
+st.title("🔐 Privagator — FHE Demo (Simulated Secure Computation)")
+st.markdown("Experience how encrypted computations feel — safely simulated for this live demo.")
 
-app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+st.divider()
 
-# Check availability
-available, avail_msg = is_concrete_available()
-if available:
-    print("✅ Concrete FHE available — server will run real encrypted computations.")
-else:
-    print("⚠️ Concrete unavailable or failed to compile — server running in simulated mode.")
-    print("Details:", avail_msg)
+# --------------------------------
+# DEMO SELECTOR
+# --------------------------------
+demo = st.selectbox(
+    "Choose an FHE demo to simulate:",
+    [
+        "Secure Multiplication",
+        "Encrypted Addition", 
+        "Square Function",
+        "Private Comparison",
+        "Aggregate Balances"
+    ]
+)
 
+st.divider()
 
-@app.route("/health", methods=["GET"])
-def health():
-    """Health check for frontends (Streamlit)"""
-    return jsonify({
-        "ok": True,
-        "status": "running",
-        "fhe_backend": "concrete" if available else "simulated",
-        "message": avail_msg
-    }), 200
+# --------------------------------
+# SIMULATED FHE FUNCTIONS (No server needed)
+# --------------------------------
+def simulate_fhe_operation(operation, inputs):
+    """Simulate FHE operations without needing a backend server"""
+    time.sleep(1.2)  # Simulate computation time
+    
+    if operation == "multiply":
+        return inputs[0] * inputs[1]
+    elif operation == "add":
+        return inputs[0] + inputs[1]
+    elif operation == "square":
+        return inputs[0] ** 2
+    elif operation == "compare":
+        return inputs[0] > inputs[1]
+    elif operation == "aggregate":
+        return {
+            "total": sum(inputs),
+            "average": sum(inputs) / len(inputs)
+        }
+    return None
 
+# --------------------------------
+# DEMO LOGIC
+# --------------------------------
+if demo == "Secure Multiplication":
+    st.subheader("Multiply two numbers securely 🔢")
+    a = st.number_input("Number A", 0, 100, 3)
+    b = st.number_input("Number B", 0, 100, 5)
+    
+    if st.button("Run Secure Multiplication"):
+        with st.spinner("Performing secure (simulated) multiplication..."):
+            result = simulate_fhe_operation("multiply", [a, b])
+        st.success(f"Encrypted computation result: {a} × {b} = {result}")
 
-@app.route("/compute", methods=["POST"])
-def compute():
-    """
-    Expect JSON:
-      { "op": "square"|"multiply"|"add"|"compare"|"aggregate", "inputs": [...] }
-    Response:
-      { "ok": True, "result": ... }  OR  { "ok": False, "error": "...", "trace": "..." }
-    """
-    try:
-        body = request.get_json(force=True)
-        op = body.get("op")
-        inputs = body.get("inputs", [])
+elif demo == "Encrypted Addition":
+    st.subheader("Add two numbers privately ➕")
+    x = st.number_input("Number X", 0, 100, 4)
+    y = st.number_input("Number Y", 0, 100, 6)
+    
+    if st.button("Run Secure Addition"):
+        with st.spinner("Performing secure (simulated) addition..."):
+            result = simulate_fhe_operation("add", [x, y])
+        st.success(f"Encrypted computation result: {x} + {y} = {result}")
 
-        if not op:
-            return jsonify({"ok": False, "error": "Missing 'op' parameter"}), 400
+elif demo == "Square Function":
+    st.subheader("Compute a square securely 🧮")
+    x = st.number_input("Enter a number", 0, 100, 6)
+    
+    if st.button("Run Secure Square"):
+        with st.spinner("Performing secure (simulated) squaring..."):
+            result = simulate_fhe_operation("square", [x])
+        st.success(f"Encrypted computation result: {x}² = {result}")
 
-        # run_circuit handles Concrete vs simulation logic
-        result = run_circuit(op, inputs)
+elif demo == "Private Comparison":
+    st.subheader("Compare values privately ⚖️")
+    a = st.number_input("Value A", 0, 100, 10)
+    b = st.number_input("Value B", 0, 100, 5)
+    
+    if st.button("Run Secure Comparison"):
+        with st.spinner("Performing secure (simulated) comparison..."):
+            result = simulate_fhe_operation("compare", [a, b])
+        st.success("✅ A is greater than B" if result else "❌ A is not greater than B")
 
-        return jsonify({"ok": True, "result": result}), 200
+elif demo == "Aggregate Balances":
+    st.subheader("Aggregate Wallet Balances 💰")
+    st.caption("Compute total and average balances securely — simulated for demo purposes.")
+    
+    n = st.slider("Number of wallets", 2, 10, 4)
+    balances = [st.number_input(f"Wallet {i+1}", 0, 1000, 100*(i+1)) for i in range(n)]
+    
+    if st.button("Run Secure Aggregation"):
+        with st.spinner("Encrypting and computing securely (simulated)..."):
+            for progress in range(0, 101, 20):
+                st.progress(progress)
+                time.sleep(0.3)
+            result = simulate_fhe_operation("aggregate", balances)
+        st.success(f"🔢 Total: {result['total']} | ⚖️ Average: {result['average']:.2f}")
+        st.balloons()
 
-    except Exception as e:
-        tb = traceback.format_exc()
-        return jsonify({"ok": False, "error": str(e), "trace": tb}), 500
+    with st.expander("🧩 How FHE protects your data"):
+        st.markdown("""
+        **Step 1:** Each wallet balance is encrypted — unreadable even to the server.  
+        **Step 2:** The server adds them while still encrypted.  
+        **Step 3:** Only your private key decrypts the final result.  
 
+        > This live demo simulates that flow safely without heavy backend load.
+        """)
+        st.image("https://cdn-icons-png.flaticon.com/512/11496/11496031.png", width=400)
 
-if __name__ == "__main__":
-    print("🚀 Starting FHE server on http://127.0.0.1:8765")
-
-
-port = int(os.environ.get("PORT", 8765))
-app.run(host="0.0.0.0", port=port)
-
+# --------------------------------
+# FOOTER
+# --------------------------------
+st.divider()
+st.caption("🔐 Simulated Fully Homomorphic Encryption (FHE) Demo")
+st.caption("Built with ❤️ using Streamlit — © 2025 Privagator Project")
