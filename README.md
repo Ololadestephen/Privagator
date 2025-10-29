@@ -1,37 +1,44 @@
-# 🧠 Privagator — Zama FHE Builder Track Project
+# 🔐 Privagator — Zama FHE Builder Track Project
 
 **Privagator** is a privacy-preserving data explorer built using **Zama's Fully Homomorphic Encryption (FHE)** technology.  
 It allows users to perform computations on encrypted data — keeping sensitive information secure **even during processing**.
 
 ---
 
-## 🚀 Project Overview
-
-This project was developed as part of the **Zama FHE Builder Track**, focusing on leveraging Zama’s `Concrete` and `TFHE` libraries to explore privacy-first computation.
-
-### 🔐 Core Idea
-Perform private data analysis and machine learning inference **without revealing the underlying data**.
+## 🚀 Live Demo
+**👉 [Try Privagator on Streamlit Cloud](https://privagator.streamlit.app/)**
 
 ---
 
-## 🧩 Tech Stack
+## 🎯 Project Overview
+
+This project was developed as part of the **Zama FHE Builder Track**, demonstrating practical FHE applications with a working web interface.
+
+### 🔐 Core Features
+- **Secure Multiplication** - Multiply encrypted values
+- **Encrypted Addition** - Add numbers privately  
+- **Private Comparisons** - Compare values without revealing them
+- **Aggregate Analytics** - Compute totals and averages on encrypted data
+- **Interactive Web Interface** - User-friendly FHE experience
+
+---
+
+## 🛠️ Tech Stack
 - **Python 3.10+**
-- **Zama Concrete Library**
-- **Streamlit** — interactive frontend
-- **PyTorch** — optional ML integration
+- **Zama Concrete Framework** (simulated operations for demo)
+- **Streamlit** — Interactive web frontend
+- **Flask** — Backend server (for local FHE operations)
 - **Git + Virtualenv**
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Quick Setup
 
-# 1. Clone the repository
+### 1. Clone the repository
 ```bash
-git clone https://github.com/Ololadestephen/Privagator.git
-cd 
+git clone https://github.com/Ololadestephen/ZamaFHE_Privagator.git
+cd ZamaFHE_Privagator
 ```
-
- 
 
 
 # 2️⃣ Create and activate your virtual environment:
@@ -55,24 +62,46 @@ streamlit run Home.py
 
 # 📂 Project Structure
 ```bash
-Privagator/
-├── app.py                 # Streamlit main app
-├── requirements.txt       # Dependencies
-├── .gitignore
-├── README.md
-└── modules/               # Internal logic
-    ├── encryption.py
-    ├── fhe_utils.py
-    ├── models/
-    └── data/
+ZamaFHE_Privagator/
+├── fhe_demo.py              # Main Streamlit app (Live Demo)
+├── fhe_server.py            # Flask FHE backend
+├── fhe_core.py              # FHE operation handlers
+├── pages/
+│   └── FHE_Demo.py          # Multi-page demo
+├── requirements.txt         # Dependencies
+└── README.md
 ```
 
-# 🧠 Key Features
+#  🧠 FHE Operations Implemented
+✅ Secure Multiplication - a × b on encrypted values
+✅ Encrypted Addition - x + y without decryption
+✅ Square Function - x² computed privately
+✅ Private Comparison - a > b without revealing values
+✅ Aggregate Analytics - Sum and average of encrypted datasets
 
-✅ Fully Homomorphic Encryption (FHE) with Zama
-✅ Real-time encrypted computation via Streamlit
-✅ Modular architecture for FHE experiments
-✅ Lightweight, privacy-first design
+#  🎓 Builder Track Highlights
+This project demonstrates:
+
+Practical FHE Applications - Real-world use cases for encrypted computation
+
+User Experience Focus - Making FHE accessible through web interface
+
+Production Deployment - Live demo on Streamlit Cloud
+
+Modular Architecture - Separated FHE logic from UI components
+
+#  🚀 Future Enhancements
+Integrate real Zama Concrete ML operations
+
+Add more complex FHE circuits
+
+Implement key management system
+
+Add performance benchmarking
+
+Support for larger datasets
+
+
 
 # 🧾 License
 
